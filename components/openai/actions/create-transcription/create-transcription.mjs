@@ -214,6 +214,10 @@ export default {
         timeout: 250000,
       });
 
+// Add the following log statements
+console.log('Axios response status:', response.status);
+console.log('Axios response headers:', response.headers);
+      
       const bufferStream = new stream.PassThrough();
       response.data.pipe(bufferStream);
 
@@ -221,7 +225,10 @@ export default {
       const writeStream = fs.createWriteStream(downloadPath);
 
       await pipelineAsync(bufferStream, writeStream);
-
+      
+// Add the following log statement
+console.log('File downloaded to:', downloadPath);
+      
       file = downloadPath;
     }
 
